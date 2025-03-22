@@ -1,0 +1,38 @@
+<main class="main">
+  <div class="content">
+    <form (ngSubmit)="enviarPedido()">
+      <div>
+          <label>Cédula:</label>
+          <input type="text" [(ngModel)]="pedido.cedula" name="cedula" required>
+      </div>
+      <div>
+          <label>Dirección:</label>
+          <input type="text" [(ngModel)]="pedido.direccion" name="direccion" required>
+      </div>
+      <div *ngFor="let prod of pedido.productos; let i = index">
+          <h4>Producto {{ i + 1 }}</h4>
+          <div>
+          <label>Nombre:</label>
+          <input type="text" [(ngModel)]="prod.nombre" name="nombre{{i}}" required>
+          </div>
+          <div>
+          <label>Precio:</label>
+          <input type="number" [(ngModel)]="prod.precio" name="precio{{i}}" required>
+          </div>
+          <div>
+          <label>Cantidad:</label>
+          <input type="number" [(ngModel)]="prod.cantidad" name="cantidad{{i}}" required>
+          </div>
+      </div>
+      <button type="button" (click)="agregarProducto()">Agregar Producto</button>
+      <div>
+          <strong>Total: {{ calcularTotal() | currency }}</strong>
+      </div>
+      <button type="submit">Guardar Pedido</button>
+      </form>
+
+  </div>
+</main>
+
+
+<router-outlet />
